@@ -119,6 +119,7 @@
                     android:layout_height="match_parent"
                     android:text="시간별"
                     android:gravity="center"
+                    android:id="@+id/tvTest"
                     android:textSize="20sp"/>
             </LinearLayout>
 
