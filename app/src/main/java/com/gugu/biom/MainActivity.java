@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout ll_image; // 상단 레이아웃 내부 왼쪽
     ImageView ivCurrent; //현재 날씨 이미지
     TextView tv_temp,tv_difference,tv_rainfall,tv_finedust,tv_o3;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,16 +54,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ll2.setOnTouchListener(new View.OnTouchListener() {
+        ll2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                if(event.getAction()==MotionEvent.ACTION_DOWN){
-
-                    Intent i = new Intent(getApplicationContext(), SnsActivity.class);
-                    startActivity(i);
-
-                }
-                return true;
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), SnsActivity.class);
+                startActivity(i);
             }
         });
     }
