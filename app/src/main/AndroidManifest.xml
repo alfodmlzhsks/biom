@@ -3,6 +3,7 @@
     package="com.gugu.biom">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -19,8 +20,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WeatherCenterActivity"></activity>
-        <activity android:name=".SnsActivity"></activity>
+        <activity android:name=".WeatherCenterActivity" />
+        <activity android:name=".SnsActivity" />
+        <activity android:name=".Main2Activity">
+
+        </activity>
     </application>
 
 </manifest>
