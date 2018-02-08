@@ -6,10 +6,10 @@
         android:color="#ffffff"
         />
     <size
-        android:height="100dp"
+        android:height="200dp"
         android:width="300dp"
         />
     <corners
-        android:radius="5dp"
+        android:radius="8dp"
         />
 </shape>

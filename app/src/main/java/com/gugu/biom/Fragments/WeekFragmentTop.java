@@ -19,6 +19,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.gugu.biom.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by gugu on 2018-01-26.
@@ -63,7 +64,7 @@ public class WeekFragmentTop extends Fragment {
         // add data
         setData(6, 30);
 
-        mChart.animateX(2500);
+        mChart.animateX(50);
 
         Legend l = mChart.getLegend();
 
@@ -113,7 +114,7 @@ public class WeekFragmentTop extends Fragment {
 
         for (int i = 0; i < count; i++) {
             float mult = range;
-            float val = -5;
+            float val = new Random().nextFloat()*10-3;
             yVals1.add(new Entry(i, val+fi));
             fi = fi-2;
         }
@@ -130,9 +131,9 @@ public class WeekFragmentTop extends Fragment {
             //그래프 그리기
             set1 = new LineDataSet(yVals1, "DataSet 3");
             set1.setAxisDependency(YAxis.AxisDependency.RIGHT);
-            set1.setColor(Color.BLUE);
-            set1.setCircleColor(Color.RED);
-            set1.setLineWidth(2f);
+            set1.setColor(Color.rgb(108,158,177));
+            set1.setCircleColor(Color.rgb(108,158,177));
+            set1.setLineWidth(1.3f);
             set1.setCircleRadius(3f);
             set1.setFillAlpha(65);
             set1.setFillColor(ColorTemplate.colorWithAlpha(Color.YELLOW, 200));
@@ -141,8 +142,8 @@ public class WeekFragmentTop extends Fragment {
 
             //LineData data = new LineData(set1, set2 ,,,,); 이런식으로 여러개 그릴수도 있음
             LineData data = new LineData(set1);
-            data.setValueTextColor(Color.BLACK);
-            data.setValueTextSize(15f);
+            data.setValueTextColor(Color.rgb(83,83,83));
+            data.setValueTextSize(12f);
 
             //그래프 데이터 설정하기
             mChart.setData(data);

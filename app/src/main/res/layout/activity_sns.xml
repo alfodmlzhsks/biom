@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="11dp"
+    android:padding="14dp"
     android:background="#8bbcce"
     tools:context="com.gugu.biom.SnsActivity">
 
@@ -13,9 +13,10 @@
         android:id="@+id/tvPosition"
         android:gravity="center"
         android:text="현재위치"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textColor="#ffffff"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="18dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -23,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@drawable/line"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="15dp"/>
 
     <ListView
         android:id="@+id/lv_Item"

@@ -28,9 +28,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="현재위치"
+                    android:textColor="#ffffff"
                     android:id="@+id/tvNowPosition"
                     android:gravity="center"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="18dp"
                     android:textSize="20sp"/>
             </LinearLayout>
 
@@ -38,21 +40,24 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#ff0000"
-                android:layout_marginHorizontal="20dp"/>
+                android:background="#ffffff"
+                android:layout_marginHorizontal="3dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvToday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="40dp"
                     android:text="11월 30일 목요일"
-                    android:layout_marginBottom="20dp"
-                    android:id="@+id/tvToday"/>
+                    android:textColor="#ffffff"
+                    android:textSize="15sp" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -60,33 +65,41 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvNowTemp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="3dp"
+                        android:layout_toRightOf="@+id/ivWeather"
                         android:text="-5"
-                        android:textSize="40sp"
-                        android:id="@+id/tvNowTemp"
-                        android:layout_toRightOf="@+id/ivWeather"/>
+                        android:textColor="#ffffff"
+                        android:textSize="55sp" />
 
                     <ImageView
+                        android:id="@+id/ivWeather"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/ivWeather"
-                        android:src="@mipmap/ic_launcher"
-                        android:layout_marginRight="15dp"/>
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@mipmap/ic_launcher" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_toRightOf="@+id/tvNowTemp"
                         android:text="˚c"
-                        android:textSize="20dp"
-                        android:layout_toRightOf="@+id/tvNowTemp" />
+                        android:textColor="#ffffff"
+                        android:textSize="25dp" />
                 </RelativeLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="35dp"
+                    android:layout_marginTop="10dp"
                     android:text="눈온다"
-                    android:layout_marginTop="20dp"/>
+                    android:textColor="#ffffff"
+                    android:textSize="15dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -98,20 +111,23 @@
                     android:layout_height="match_parent"
                     android:text="시간별"
                     android:textSize="15sp"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:textColor="#ffffff"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginHorizontal="3dp"/>
             </LinearLayout>
+
             <!-- 선 -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#ff0000"
-                android:layout_marginHorizontal="20dp"/>
+                android:background="#ffffff"
+                android:layout_marginHorizontal="3dp"/>
 
             <!--시간별-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical"
@@ -130,13 +146,13 @@
                     android:layout_height="0dp"
                     android:orientation="horizontal"
                     android:layout_weight="3">
-                    
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical">
-                        
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -157,11 +173,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="오후 3시"
-                                android:textSize="10sp"
+                                android:id="@+id/tvTime1"
+                                android:textSize="12sp"
                                 android:gravity="center_vertical|center_horizontal"/>
                         </LinearLayout>
                     </LinearLayout>
-                    
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -187,11 +204,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="오후 3시"
-                                android:textSize="10sp"
+                                android:textSize="12sp"
+                                android:id="@+id/tvTime2"
                                 android:gravity="center_vertical|center_horizontal"/>
                         </LinearLayout>
                     </LinearLayout>
-                    
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -218,11 +236,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="오후 3시"
-                                android:textSize="10sp"
+                                android:textSize="12sp"
+                                android:id="@+id/tvTime3"
                                 android:gravity="center_vertical|center_horizontal"/>
                         </LinearLayout>
                     </LinearLayout>
-                    
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -249,11 +268,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="오후 3시"
-                                android:textSize="10sp"
+                                android:textSize="12sp"
+                                android:id="@+id/tvTime4"
                                 android:gravity="center_vertical|center_horizontal"/>
                         </LinearLayout>
                     </LinearLayout>
-                    
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -280,11 +300,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="오후 3시"
-                                android:textSize="10sp"
+                                android:textSize="12sp"
+                                android:id="@+id/tvTime5"
                                 android:gravity="center_vertical|center_horizontal"/>
                         </LinearLayout>
                     </LinearLayout>
-                    
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -311,7 +332,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="오후 3시"
-                                android:textSize="10sp"
+                                android:textSize="12sp"
+                                android:id="@+id/tvTime6"
                                 android:gravity="center_vertical|center_horizontal"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -328,21 +350,23 @@
                     android:layout_height="match_parent"
                     android:text="요일별"
                     android:textSize="15sp"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:textColor="#ffffff"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginHorizontal="3dp"/>
             </LinearLayout>
 
             <!-- 선 -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#ff0000"
-                android:layout_marginHorizontal="20dp"/>
+                android:background="#ffffff"
+                android:layout_marginHorizontal="3dp"/>
 
             <!--요일별-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical"
@@ -381,23 +405,23 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
-                            
+
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
-                                
+
                                 <ImageView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:src="@mipmap/ic_launcher"/>
                             </LinearLayout>
-                            
+
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1">
-                                
+
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
@@ -431,6 +455,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
                                 android:text="월"
+                                android:textSize="12sp"
                                 android:id="@+id/tvWeekName1"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -495,6 +520,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
                                 android:text="월"
+                                android:textSize="12sp"
                                 android:id="@+id/tvWeekName2"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -559,6 +585,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
                                 android:text="월"
+                                android:textSize="12sp"
                                 android:id="@+id/tvWeekName3"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -623,6 +650,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
                                 android:text="월"
+                                android:textSize="12sp"
                                 android:id="@+id/tvWeekName4"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -687,6 +715,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
                                 android:text="월"
+                                android:textSize="12sp"
                                 android:id="@+id/tvWeekName5"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -751,6 +780,7 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
                                 android:text="월"
+                                android:textSize="12sp"
                                 android:id="@+id/tvWeekName6"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -767,21 +797,23 @@
                     android:layout_height="match_parent"
                     android:text="상세정보"
                     android:textSize="15sp"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:textColor="#ffffff"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginHorizontal="3dp"/>
             </LinearLayout>
 
             <!-- 선 -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#ff0000"
-                android:layout_marginHorizontal="20dp"/>
+                android:background="#ffffff"
+                android:layout_marginHorizontal="3dp"/>
 
             <!--상세정보-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="3dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical"
@@ -807,7 +839,7 @@
                         android:layout_weight="1"
                         android:orientation="horizontal"
                         android:paddingBottom="4dp">
-                        
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -945,139 +977,6 @@
                             android:textSize="10dp"
                             android:gravity="center_vertical|center_horizontal"
                             android:id="@+id/tvInfoTime6"/>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="생활지수"
-                    android:textSize="15sp"
-                    android:layout_marginHorizontal="20dp"/>
-            </LinearLayout>
-
-            <!-- 선 -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#ff0000"
-                android:layout_marginHorizontal="20dp"/>
-
-            <!--생활지수-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/rounded"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        android:background="@drawable/lifecolor">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="미세먼지 농도"
-                                android:gravity="center_horizontal|center_vertical"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/lifecolor">
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/lifecolor">
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/lifecolor">
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/lifecolor">
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/lifecolor">
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/lifecolor">
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:background="@drawable/lifecolor">
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

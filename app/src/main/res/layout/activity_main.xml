@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="11dp"
+    android:paddingRight="3dp"
+    android:paddingLeft="3dp"
+    android:paddingBottom="3dp"
     android:background="#8bbcce"
     tools:context="com.gugu.biom.MainActivity">
 
@@ -17,13 +19,14 @@
 
         <LinearLayout
 
-            android:layout_weight="5"
+            android:layout_weight="4"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal">
             <TextView
                 android:gravity="center"
                 android:id="@+id/tv_left"
+                android:textColor="#ffffff"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />
@@ -41,8 +44,15 @@
                 android:id="@+id/tv_right"
                 android:layout_weight="1"
                 android:layout_width="0dp"
+                android:textColor="#ffffff"
                 android:layout_height="match_parent" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#ffffff"
+            android:layout_marginHorizontal="0dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,88 +64,122 @@
 
         <LinearLayout
             android:id="@+id/ll1"
-            android:layout_weight="20"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:background="@drawable/shape">
+            android:layout_weight="16"
+            android:background="@drawable/shape"
+            android:orientation="horizontal">
+
             <LinearLayout
                 android:id="@+id/ll_image"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginRight="15dp">
+
                 <LinearLayout
-                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:orientation="horizontal">
+
                     <LinearLayout
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical">
+
                         <LinearLayout
-                            android:layout_weight="0.5"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp">
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5">
 
                         </LinearLayout>
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:text="현재 기온"
-                            android:gravity="center">
 
-                        </TextView>
-                        <View
-                            android:layout_gravity="center"
-                            android:layout_width="60dp"
-                            android:layout_height="1dp"
-                            android:background="#000000"></View>
                         <TextView
-                            android:id="@+id/tv_temp"
-                            android:layout_weight="2"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
+                            android:layout_weight="1"
                             android:gravity="center"
-                            android:textColor="#0000FF"
-                            android:textSize="30dp"
-                            android:text="-5℃">
+                            android:text="현재기온"
+                            android:textSize="17sp">
 
                         </TextView>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_weight="0.5"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp">
 
-                        </LinearLayout>
-                        <TextView
-                            android:layout_weight="1"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:text="현재날씨"
-                            android:gravity="center">
-
-                        </TextView>
                         <View
-                            android:layout_gravity="center"
                             android:layout_width="60dp"
                             android:layout_height="1dp"
+                            android:layout_gravity="center"
+                            android:background="#000000"></View>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:orientation="horizontal"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="10dp">
+                            <TextView
+                                android:id="@+id/tv_temp"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:gravity="center"
+                                android:text="-5"
+                                android:textColor="#5c94a9"
+                                android:textSize="45sp">
+                            </TextView>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:layout_marginTop="17dp"
+                                android:text="℃"
+                                android:textColor="#5c94a9"
+                                android:textSize="20sp">
+
+                            </TextView>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5">
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="현재날씨"
+                            android:textSize="17sp">
+
+                        </TextView>
+
+                        <View
+                            android:layout_width="60dp"
+                            android:layout_height="1dp"
+                            android:layout_gravity="center"
                             android:background="#000000"></View>
 
                         <ImageView
@@ -148,137 +192,163 @@
 
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="1dp">
+                    android:layout_margin="1dp"
+                    android:layout_weight="1">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        >
+                        android:orientation="vertical">
+
                         <TextView
-                            android:layout_weight="3"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-
+                            android:layout_weight="3"
                             android:gravity="center"
                             android:text="상세날씨"
-                            />
+                            android:textSize="17sp"/>
+
                         <View
-                            android:layout_width="match_parent"
+                            android:layout_width="150dp"
                             android:layout_height="1dp"
+                            android:layout_gravity="center"
                             android:background="#000000">
 
                         </View>
+
                         <LinearLayout
-                            android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:orientation="horizontal"
-                            >
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp">
+
                             <LinearLayout
-                                android:layout_weight="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_weight="1"
                                 android:orientation="vertical">
+
                                 <LinearLayout
-                                    android:layout_weight="1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_weight="1"
                                     android:orientation="horizontal">
+
                                     <TextView
-                                        android:layout_weight="1"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="어제 보다"/>
+                                        android:text="어제보다" />
+
                                     <TextView
                                         android:id="@+id/tv_difference"
-                                        android:layout_weight="2"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_weight="2"
                                         android:gravity="center"
-                                        android:text="-1℃"/>
+                                        android:text="-1℃"
+                                        android:textColor="#5c94a9"
+                                        android:textStyle="bold"/>
 
                                 </LinearLayout>
+
                                 <LinearLayout
-                                    android:layout_weight="1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_weight="1"
                                     android:orientation="horizontal">
+
                                     <TextView
-                                        android:layout_weight="1"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="미세먼지"/>
+                                        android:text="미세먼지" />
+
                                     <TextView
                                         android:id="@+id/tv_finedust"
-                                        android:layout_weight="2"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_weight="2"
                                         android:gravity="center"
-                                        android:textColor="#0000FF"
-                                        android:text="보통"/>
+                                        android:text="보통"
+                                        android:textColor="#5c94a9"
+                                        android:textStyle="bold"/>
                                 </LinearLayout>
+
                                 <LinearLayout
-                                    android:layout_weight="1"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
 
                                 </LinearLayout>
                             </LinearLayout>
+
                             <LinearLayout
-                                android:layout_weight="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:layout_weight="1"
                                 android:orientation="vertical">
+
                                 <LinearLayout
-                                    android:layout_weight="1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_weight="1"
                                     android:orientation="horizontal">
+
                                     <TextView
-                                        android:layout_weight="1"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="강수확률"/>
+                                        android:text="강수확률" />
+
                                     <TextView
                                         android:id="@+id/tv_rainfall"
-                                        android:layout_weight="2"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_weight="2"
                                         android:gravity="center"
-                                        android:text="20%"/>
+                                        android:text="20%"
+                                        android:textColor="#5c94a9"
+                                        android:textStyle="bold"/>
                                 </LinearLayout>
+
                                 <LinearLayout
-                                    android:layout_weight="1"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
+                                    android:layout_weight="1"
                                     android:orientation="horizontal">
+
                                     <TextView
-                                        android:layout_weight="1"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_weight="1"
                                         android:gravity="center"
-                                        android:text="오존"/>
+                                        android:text="오존" />
+
                                     <TextView
                                         android:id="@+id/tv_o3"
-                                        android:layout_weight="2"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:layout_weight="2"
                                         android:gravity="center"
-                                        android:textColor="#0000FF"
-                                        android:text="좋음"/>
+                                        android:text="좋음"
+                                        android:textColor="#5c94a9"
+                                        android:textStyle="bold"/>
                                 </LinearLayout>
+
                                 <LinearLayout
-                                    android:layout_weight="1"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
-                                </LinearLayout>
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"></LinearLayout>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -298,15 +368,21 @@
             android:id="@+id/ll2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="20"
+            android:layout_weight="23"
             android:background="@drawable/shape"
             android:orientation="vertical">
 
             <TextView
-                android:layout_weight="10"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="   SNS" >
+                android:layout_height="wrap_content"
+                android:text="SNS"
+                android:textSize="17sp"
+                android:textColor="#5c94a9"
+                android:textStyle="bold"
+                android:paddingLeft="15dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                >
             </TextView>
 
             <LinearLayout
@@ -314,6 +390,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+
                 <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -323,7 +400,7 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="15dp"
+                        android:layout_margin="10dp"
                         android:background="#3333">
 
                     </ImageView>
@@ -331,7 +408,7 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="15dp"
+                        android:layout_margin="10dp"
                         android:background="#3333">
 
                     </ImageView>
@@ -345,7 +422,7 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="15dp"
+                        android:layout_margin="10dp"
                         android:background="#3333">
 
                     </ImageView>
@@ -353,7 +430,7 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="15dp"
+                        android:layout_margin="10dp"
                         android:background="#3333">
 
                     </ImageView>
