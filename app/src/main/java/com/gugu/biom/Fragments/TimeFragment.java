@@ -143,9 +143,9 @@ public class TimeFragment extends Fragment {
             LineData data = new LineData(set1);
             data.setValueTextColor(Color.rgb(107,107,107));
             data.setValueTextSize(12f);
-
             //그래프 데이터 설정하기
             mChart.setData(data);
+
         }
     }
 }

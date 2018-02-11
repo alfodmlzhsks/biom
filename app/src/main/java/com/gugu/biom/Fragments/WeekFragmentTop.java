@@ -147,6 +147,7 @@ public class WeekFragmentTop extends Fragment {
 
             //그래프 데이터 설정하기
             mChart.setData(data);
+
         }
     }
 }
