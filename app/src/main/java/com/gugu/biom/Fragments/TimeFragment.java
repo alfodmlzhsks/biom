@@ -16,6 +16,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.gugu.biom.Network.FragmentDO;
 import com.gugu.biom.R;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class TimeFragment extends Fragment {
 
     private LineChart mChart;
     private float fi = -2;
+    private FragmentDO info = FragmentDO.getInstance();
+    private int t1, t2, t3, t4, t5, t6;
 
     public TimeFragment() {
         super();
@@ -38,6 +41,14 @@ public class TimeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_time, container, false);
+
+        t1 = info.gettFirst();
+        t2 = info.gettSecond();
+        t3 = info.gettThird();
+        t4 = info.gettFourth();
+        t5 = info.gettFifth();
+        t6 = info.gettSixth();
+        int avg = (t1+t2+t3+t4+t5+t6)/6;
 
         mChart = (LineChart) view.findViewById(R.id.chart1);
 
@@ -89,8 +100,8 @@ public class TimeFragment extends Fragment {
         YAxis leftAxis = mChart.getAxisLeft();
 //        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
         leftAxis.setTextColor(Color.WHITE);
-        leftAxis.setAxisMaximum(0f);    //최대값
-        leftAxis.setAxisMinimum(-20f);  //최소값
+        leftAxis.setAxisMaximum(avg+10f);    //최대값
+        leftAxis.setAxisMinimum(avg-10f);  //최소값
         leftAxis.setDrawGridLines(false);
         leftAxis.setGranularityEnabled(false);
         leftAxis.setAxisLineColor(Color.WHITE);
@@ -98,8 +109,8 @@ public class TimeFragment extends Fragment {
         //오른쪽 범위
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setTextColor(Color.WHITE);
-        rightAxis.setAxisMaximum(0f);  //최대값
-        rightAxis.setAxisMinimum(-20f); //최소값
+        rightAxis.setAxisMaximum(avg+10f);  //최대값
+        rightAxis.setAxisMinimum(avg-10f); //최소값
         rightAxis.setDrawGridLines(false);
         rightAxis.setDrawZeroLine(false);
         rightAxis.setGranularityEnabled(false);
@@ -111,12 +122,22 @@ public class TimeFragment extends Fragment {
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
-        for (int i = 0; i < count; i++) {
-            float mult = range;
-            float val = -5;
-            yVals1.add(new Entry(i, val+fi));
-            fi = fi-2;
-        }
+//        for (int i = 0; i < count; i++) {
+//            float mult = range;
+//            float val = -5;
+//            yVals1.add(new Entry(i, val+fi));
+//            fi = fi-2;
+//        }
+
+
+
+        //그래프 점 추가하는거임 -> (인덱스, 값)
+        yVals1.add(new Entry(0, t1));
+        yVals1.add(new Entry(1, t2));
+        yVals1.add(new Entry(2, t3));
+        yVals1.add(new Entry(3, t4));
+        yVals1.add(new Entry(4, t5));
+        yVals1.add(new Entry(5, t6));
 
         LineDataSet set1;
 

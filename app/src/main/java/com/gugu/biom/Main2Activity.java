@@ -16,9 +16,18 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         TextView jnitxt = (TextView)findViewById(R.id.jnitxt);
-        jnitxt.setText(stringFromJNI());
+
+//        int[] j = getXY(37.4535195, 126.90311870000005);
+//        jnitxt.setText(""+j[0]+":"+j[1]);
     }
 
-    public native String stringFromJNI();
+    public static int[] transXY(double lati, double longi) {
+
+        return getXY(lati, longi);
+    }
+
+    public static native int[] getXY(double lati, double longi);
+
+
 
 }

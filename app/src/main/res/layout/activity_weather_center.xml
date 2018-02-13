@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:layout_toRightOf="@+id/ivWeather"
-                        android:text="-5"
+                        android:text="-4"
                         android:textColor="#ffffff"
                         android:textSize="55sp" />
 
