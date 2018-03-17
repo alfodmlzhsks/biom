@@ -1,155 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingRight="3dp"
-    android:paddingLeft="3dp"
-    android:paddingBottom="3dp"
-    android:background="#8bbcce"
     tools:context="com.gugu.biom.MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
-
-        <LinearLayout
-
-            android:layout_weight="4"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal">
-            <TextView
-                android:gravity="center"
-                android:id="@+id/tv_left"
-                android:textColor="#ffffff"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
-
-            <android.support.v4.view.ViewPager
-                android:layout_weight="1"
-                android:id="@+id/vp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true">
-            </android.support.v4.view.ViewPager>
-
-            <TextView
-                android:gravity="center"
-                android:id="@+id/tv_right"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:textColor="#ffffff"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#ffffff"
-            android:layout_marginHorizontal="0dp"/>
+    <android.support.v4.widget.DrawerLayout
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/drawer">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingRight="3dp"
+            android:paddingLeft="3dp"
+            android:paddingBottom="3dp"
+            android:background="#8bbcce">
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="16"
-            android:background="@drawable/shape"
-            android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/ll_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginRight="15dp">
+                android:layout_margin="10dp">
+
+                <LinearLayout
+
+                    android:layout_weight="4"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/ibtnDrawer"/>
+
+                    <android.support.v4.view.ViewPager
+                        android:layout_weight="5"
+                        android:id="@+id/vp"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true">
+                    </android.support.v4.view.ViewPager>
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:id="@+id/lll_1"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+                            <ImageView
+                                android:id="@+id/iv_1"
+                                android:background="@color/colorPrimary"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:visibility="invisible"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/lll_2"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+                            <ImageView
+                                android:id="@+id/iv_2"
+                                android:layout_width="match_parent"
+                                android:background="@color/colorAccent"
+                                android:layout_height="match_parent"
+                                android:visibility="invisible"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/lll_3"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+                            <ImageView
+                                android:id="@+id/iv_3"
+                                android:layout_width="match_parent"
+                                android:background="@color/colorPrimaryDark"
+                                android:layout_height="match_parent"
+                                android:visibility="invisible"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/lll_4"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+                            <ImageView
+                                android:id="@+id/iv_4"
+                                android:layout_width="match_parent"
+                                android:background="#3333"
+                                android:layout_height="match_parent"
+                                android:visibility="invisible"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#ffffff"
+                    android:layout_marginHorizontal="0dp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="16"
+                    android:background="@drawable/shape"
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/ll_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5">
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="현재기온"
-                            android:textSize="17sp">
-
-                        </TextView>
-
-                        <View
-                            android:layout_width="60dp"
-                            android:layout_height="1dp"
-                            android:layout_gravity="center"
-                            android:background="#000000"></View>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2"
-                            android:orientation="horizontal"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:paddingBottom="10dp">
-                            <TextView
-                                android:id="@+id/tv_temp"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center"
-                                android:text="-5"
-                                android:textColor="#5c94a9"
-                                android:textSize="45sp">
-                            </TextView>
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:layout_marginTop="17dp"
-                                android:text="℃"
-                                android:textColor="#5c94a9"
-                                android:textSize="20sp">
-
-                            </TextView>
-                        </LinearLayout>
-
 
                     </LinearLayout>
 
@@ -157,76 +151,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="0.5">
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="현재날씨"
-                            android:textSize="17sp">
-
-                        </TextView>
-
-                        <View
-                            android:layout_width="60dp"
-                            android:layout_height="1dp"
-                            android:layout_gravity="center"
-                            android:background="#000000"></View>
-
-                        <ImageView
-                            android:id="@+id/ivCurrent"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="2">
-
-                        </ImageView>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="1dp"
-                    android:layout_weight="1">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:text="상세날씨"
-                            android:textSize="17sp"/>
-
-                        <View
-                            android:layout_width="150dp"
-                            android:layout_height="1dp"
-                            android:layout_gravity="center"
-                            android:background="#000000">
-
-                        </View>
+                        android:orientation="vertical"
+                        android:layout_marginRight="15dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp">
+                            android:orientation="horizontal">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -236,59 +168,57 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.5">
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
                                     android:layout_weight="1"
-                                    android:orientation="horizontal">
+                                    android:gravity="center"
+                                    android:text="현재기온"
+                                    android:textSize="17sp">
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="어제보다" />
+                                </TextView>
 
+                                <View
+                                    android:layout_width="60dp"
+                                    android:layout_height="1dp"
+                                    android:layout_gravity="center"
+                                    android:background="#000000"></View>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="2"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:paddingBottom="10dp">
                                     <TextView
-                                        android:id="@+id/tv_difference"
-                                        android:layout_width="match_parent"
+                                        android:id="@+id/tv_temp"
+                                        android:layout_width="0dp"
                                         android:layout_height="match_parent"
                                         android:layout_weight="2"
                                         android:gravity="center"
-                                        android:text="-1℃"
+                                        android:text="-5"
                                         android:textColor="#5c94a9"
-                                        android:textStyle="bold"/>
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
-
+                                        android:textSize="35sp">
+                                    </TextView>
                                     <TextView
-                                        android:layout_width="match_parent"
+                                        android:layout_width="0dp"
                                         android:layout_height="match_parent"
                                         android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="미세먼지" />
-
-                                    <TextView
-                                        android:id="@+id/tv_finedust"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="2"
-                                        android:gravity="center"
-                                        android:text="보통"
+                                        android:layout_marginTop="17dp"
+                                        android:text="℃"
                                         android:textColor="#5c94a9"
-                                        android:textStyle="bold"/>
+                                        android:textSize="20sp">
+
+                                    </TextView>
                                 </LinearLayout>
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1">
 
-                                </LinearLayout>
                             </LinearLayout>
 
                             <LinearLayout
@@ -299,146 +229,295 @@
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:orientation="horizontal">
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.5">
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="강수확률" />
-
-                                    <TextView
-                                        android:id="@+id/tv_rainfall"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="2"
-                                        android:gravity="center"
-                                        android:text="20%"
-                                        android:textColor="#5c94a9"
-                                        android:textStyle="bold"/>
                                 </LinearLayout>
 
-                                <LinearLayout
+                                <TextView
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="0dp"
                                     android:layout_weight="1"
-                                    android:orientation="horizontal">
+                                    android:gravity="center"
+                                    android:text="현재날씨"
+                                    android:textSize="17sp">
 
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:text="오존" />
+                                </TextView>
 
-                                    <TextView
-                                        android:id="@+id/tv_o3"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_weight="2"
-                                        android:gravity="center"
-                                        android:text="좋음"
-                                        android:textColor="#5c94a9"
-                                        android:textStyle="bold"/>
-                                </LinearLayout>
+                                <View
+                                    android:layout_width="60dp"
+                                    android:layout_height="1dp"
+                                    android:layout_gravity="center"
+                                    android:background="#000000"></View>
 
-                                <LinearLayout
+                                <ImageView
+                                    android:id="@+id/ivCurrent"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"></LinearLayout>
+                                    android:layout_height="0dp"
+                                    android:layout_weight="2">
+
+                                </ImageView>
+
                             </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="1dp"
+                            android:layout_weight="1">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3"
+                                    android:gravity="center"
+                                    android:text="상세날씨"
+                                    android:textSize="17sp"/>
+
+                                <View
+                                    android:layout_width="150dp"
+                                    android:layout_height="1dp"
+                                    android:layout_gravity="center"
+                                    android:background="#000000">
+
+                                </View>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="어제보다" />
+
+                                            <TextView
+                                                android:id="@+id/tv_difference"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="2"
+                                                android:gravity="center"
+                                                android:text="-1℃"
+                                                android:textColor="#5c94a9"
+                                                android:textStyle="bold"/>
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="미세먼지" />
+
+                                            <TextView
+                                                android:id="@+id/tv_finedust"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="2"
+                                                android:gravity="center"
+                                                android:text="보통"
+                                                android:textColor="#5c94a9"
+                                                android:textStyle="bold"/>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1">
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="강수확률" />
+
+                                            <TextView
+                                                android:id="@+id/tv_rainfall"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="2"
+                                                android:gravity="center"
+                                                android:text="20%"
+                                                android:textColor="#5c94a9"
+                                                android:textStyle="bold"/>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="오존" />
+
+                                            <TextView
+                                                android:id="@+id/tv_o3"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="2"
+                                                android:gravity="center"
+                                                android:text="좋음"
+                                                android:textColor="#5c94a9"
+                                                android:textStyle="bold"/>
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"></LinearLayout>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp">
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="23"
+                    android:background="@drawable/shape"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="SNS"
+                        android:textSize="17sp"
+                        android:textColor="#5c94a9"
+                        android:textStyle="bold"
+                        android:paddingLeft="15dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="10dp"
+                        >
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="#3333">
+
+                            </ImageView>
+                            <ImageView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="#3333">
+
+                            </ImageView>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="#3333">
+
+                            </ImageView>
+                            <ImageView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:background="#3333">
+
+                            </ImageView>
 
                         </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp">
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="23"
-            android:background="@drawable/shape"
-            android:orientation="vertical">
+        <ListView
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:id="@+id/lvSetting"
+            android:background="#ffffff"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SNS"
-                android:textSize="17sp"
-                android:textColor="#5c94a9"
-                android:textStyle="bold"
-                android:paddingLeft="15dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
-                >
-            </TextView>
-
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:background="#3333">
-
-                    </ImageView>
-                    <ImageView
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:background="#3333">
-
-                    </ImageView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:background="#3333">
-
-                    </ImageView>
-                    <ImageView
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="10dp"
-                        android:background="#3333">
-
-                    </ImageView>
-
-                </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-</LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
+</android.support.constraint.ConstraintLayout>

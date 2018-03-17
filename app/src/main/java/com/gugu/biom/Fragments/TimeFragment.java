@@ -16,7 +16,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.gugu.biom.Network.FragmentDO;
+import com.gugu.biom.Data.FragmentDO;
 import com.gugu.biom.R;
 
 import java.util.ArrayList;

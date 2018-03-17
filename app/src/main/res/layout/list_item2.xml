@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:weightSum="10"
+    android:background="@drawable/shape"
+    android:layout_marginBottom="25dp"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="알림 설정"
+        android:id="@+id/tvText"/>
+
+
+    <Switch
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:textOn="On"
+        android:textOff="Off"
+        android:textSize="20dp"
+        style="@style/SwitchCustom"
+        android:typeface="monospace"
+        android:id="@+id/switchAlarm"
+        />
+
+
+
+</LinearLayout>

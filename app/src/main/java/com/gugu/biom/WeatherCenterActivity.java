@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.gugu.biom.Data.FragmentDO;
+import com.gugu.biom.Database.DBManager;
 import com.gugu.biom.Fragments.InfoHumidityFragment;
 import com.gugu.biom.Fragments.InfoWindFragment;
 import com.gugu.biom.Fragments.TimeFragment;
@@ -22,17 +24,34 @@ public class WeatherCenterActivity extends AppCompatActivity {
     TextView tvNowTemp = null;
     TextView tvNowPosition = null;
     TextView tvToday = null;
+    FragmentDO data = null;
+    DBManager manager = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_center);
 
+        manager = new DBManager(this);
+        manager.dbOpen();
+
         i = getIntent();
+        data = FragmentDO.getInstance();
+
+//        Log.i("t9t9", data.getNowPoss()[0]);
 
         tvNowTemp = (TextView) findViewById(R.id.tvNowTemp);
         tvNowPosition = (TextView) findViewById(R.id.tvNowPosition);
         tvToday = (TextView) findViewById(R.id.tvToday);
+
+        Bundle dbData = manager.selectDB("nowTemp");
+        double a = Double.parseDouble(dbData.getString("nowTemp"));
+
+        if (a < 0.0) {
+            tvNowTemp.setText("-" + Math.round(a));
+        } else {
+            tvNowTemp.setText("" + Math.round(a));
+        }
 
         final TextView[] tvTimes = {
                 (TextView) findViewById(R.id.tvTime1),
@@ -43,59 +62,40 @@ public class WeatherCenterActivity extends AppCompatActivity {
                 (TextView) findViewById(R.id.tvTime6)
         };
 
-        tvNowTemp.setText(i.getStringExtra("temp"));
-        tvNowPosition.setText("" + MainActivity.nowPoss[1] + " " + MainActivity.nowPoss[2]);
 
-        long now = System.currentTimeMillis();
-        Date date = new Date(now);
-
-        switch (date.getDay()) {
-            case 0:
-                tvToday.setText(new SimpleDateFormat("M월 dd일").format(date)+" 일요일");
-                break;
-            case 1:
-                tvToday.setText(new SimpleDateFormat("M월 dd일").format(date)+" 월요일");
-                break;
-            case 2:
-                tvToday.setText(new SimpleDateFormat("M월 dd일").format(date)+" 화요일");
-                break;
-            case 3:
-                tvToday.setText(new SimpleDateFormat("M월 dd일").format(date)+" 수요일");
-                break;
-            case 4:
-                tvToday.setText(new SimpleDateFormat("M월 dd일").format(date)+" 목요일");
-                break;
-            case 5:
-                tvToday.setText(new SimpleDateFormat("M월 dd일").format(date)+" 금요일");
-                break;
-            case 6:
-                tvToday.setText(new SimpleDateFormat("M월 dd일").format(date)+" 토요일");
-                break;
-            default:
-                break;
-        }
+        Date date = new Date();
 
 
         SimpleDateFormat format = new SimpleDateFormat("H");
         final int nowTime = Integer.parseInt(format.format(date));
 
         runOnUiThread(new Runnable() {
+
             @Override
             public void run() {
                 int[] base_time = {2, 5, 8, 11, 14, 17, 20, 23};
+                int[] real_time = {0, 3, 6, 9, 12, 15, 18, 21};
 
                 int index = 0;
                 int count = 0;
                 while (true) {
 
-                    if (nowTime <= base_time[index]) {
-                        break;
+                    if (nowTime < base_time[index]) {
+
+                        if (index == 7) {
+                            index = 0;
+                            break;
+                        } else {
+                            index++;
+                            break;
+                        }
+
                     }
                     index++;
                 }
 
                 while (count < 6) {
-                    tvTimes[count].setText(base_time[index] + "시");
+                    tvTimes[count].setText(real_time[index] + "시");
                     if (index == 7) index = -1;
                     index++;
                     count++;

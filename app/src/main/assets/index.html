@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyBR1UTjqptrazNWplGqeo04DMt5-RiRJyQ",
+	    authDomain: "biom-6145e.firebaseapp.com",
+	    databaseURL: "https://biom-6145e.firebaseio.com",
+	    projectId: "biom-6145e",
+	    storageBucket: "biom-6145e.appspot.com",
+	    messagingSenderId: "103586694774"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+
+	<script>
+		var count = 0;
+
+		function writeUserData(userId, name, email, imageUrl) {
+
+			if(count==10) count=0;
+		  firebase.database().ref('users/' + userId + count).set({
+		    username: name,
+		    email: email,
+		    profile_picture : imageUrl
+		  });
+
+		  count++;
+		}
+	</script>
+
+	</head>
+
+	<body>
+		<a class="twitter-timeline" href="https://twitter.com/onkweather?ref_src=twsrc%5Etfw">Tweets by onkweather</a>
+	</body>
+</html>

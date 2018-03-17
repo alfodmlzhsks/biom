@@ -1,11 +1,11 @@
-package com.gugu.biom.Network;
+package com.gugu.biom.Data;
 
 /**
  * Created by gugu on 2018-02-12.
  */
 
 public class DO {
-    private String key = "MxYHBKCFORelL6cM7Z7VH4IYqjz0sK%2BY767A8oAC6mQqEWspAjUlWgUXkPFaws0QcGaxE3TyQYbr4sK8BzLJjA%3D%3D";
+    private String key = "SJ5YUw%2FCp1%2FPQOajaLNFxrAmSx%2F1C5V9rWH15ZrJU0FSD4NjbYGwwFdQXcT2ezlyjOeFl9oqqjK5Iyn7wMvXaA%3D%3D";
     private String base_date;
     private String base_time;
     private String nx;
@@ -14,7 +14,7 @@ public class DO {
     private String pageNo="1";
     private String pageSize="10";
     private String startPage="1";
-    private String _type;
+    private String _type = "json";
     private String action;
 
     public String getAction() {

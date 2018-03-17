@@ -1,4 +1,4 @@
-package com.gugu.biom.Network;
+package com.gugu.biom.Data;
 
 /**
  * Created by gugu on 2018-02-12.
@@ -12,6 +12,10 @@ public class FragmentDO {
     private int tFourth;
     private int tFifth;
     private int tSixth;
+    private int x = 0;
+    private int y = 0;
+    private String[] nowPoss;
+
 
     private FragmentDO() {
 
@@ -23,6 +27,30 @@ public class FragmentDO {
 
     public static FragmentDO getInstance() {
         return ForInstance.instance;
+    }
+
+    public String[] getNowPoss() {
+        return nowPoss;
+    }
+
+    public void setNowPoss(String[] nowPoss) {
+        this.nowPoss = nowPoss;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int gettFirst() {

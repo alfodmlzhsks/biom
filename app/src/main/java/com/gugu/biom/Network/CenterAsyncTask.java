@@ -1,12 +1,12 @@
 package com.gugu.biom.Network;
 
-import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 
-import com.gugu.biom.R;
+import com.gugu.biom.Data.DO;
+import com.gugu.biom.Database.DBManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,6 +21,7 @@ public class CenterAsyncTask extends AsyncTask<String, String, String> {
     private LoadManager load;
     private Context context;
     private DO nowCheck;
+    private DBManager manager = null;
 
     public CenterAsyncTask(DO data, Context context) {
         this.nowCheck = data;
@@ -37,7 +38,7 @@ public class CenterAsyncTask extends AsyncTask<String, String, String> {
     protected String doInBackground(String... strings) {
         String s = load.connect();
 
-        Log.i("t1t1", s);   //json결과값 확인
+        Log.i("t1t1", s);
 
         return s;
     }
@@ -47,81 +48,38 @@ public class CenterAsyncTask extends AsyncTask<String, String, String> {
         super.onProgressUpdate(values);
     }
 
+
+    //SQLite에다가 값을 저장만하고 앱킬때 그때 내장DB에서 불러와서 세팅하면되는거임
+    //여기서는 그냥 저장만
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
+        ContentValues values = new ContentValues();
+
+        manager = new DBManager(this.context);
+        manager.dbOpen();
+
+
+
         try {
-            if(nowCheck.getAction().equals("main")) {   //MainActivity에서 요청한경우
-                final FragmentDO fInfo = FragmentDO.getInstance();
-
+            if (nowCheck.getAction().equals("main")) {   //MainActivity에서 요청한경우
                 JSONObject root = new JSONObject(s);
+
                 JSONObject response = root.getJSONObject("response");
+
                 JSONObject body = response.getJSONObject("body");
+
+
                 JSONObject items = body.getJSONObject("items");
-                final JSONArray item = items.getJSONArray("item");
+                JSONArray item = items.getJSONArray("item");
 
-                int i=0;
-                while(item.getJSONObject(i) != null) {
-                    if(item.getJSONObject(i).getString("category").equals("T3H")) {
-                        break;
-                    }
-                    i++;
-                }
+                String realTemp = item.getJSONObject(5).getString("obsrValue");
 
-                String nowTemp = item.getJSONObject(i).getString("fcstValue");    //현재기온
+                values.put("nowTemp", realTemp);
+                manager.insertDB(values);
+            } else if (nowCheck.getAction().equals("center")) {
 
-                TextView tv_temp = ((Activity)context).findViewById(R.id.tv_temp);
-                tv_temp.setText(nowTemp);
-
-                final int[] temps = new int[6];
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        int i = 0;
-                        int j = 0;
-
-                        while(i < item.length()) {
-                            try {
-                                if(item.getJSONObject(i).getString("category").equals("T3H")) {
-                                    temps[j] = Integer.parseInt(item.getJSONObject(i).getString("fcstValue"));
-
-                                    switch(j) {
-                                        case 0:
-                                            fInfo.settFirst(temps[j]);
-                                            break;
-                                        case 1:
-                                            fInfo.settSecond(temps[j]);
-                                            break;
-                                        case 2:
-                                            fInfo.settThird(temps[j]);
-                                            break;
-                                        case 3:
-                                            fInfo.settFourth(temps[j]);
-                                            break;
-                                        case 4:
-                                            fInfo.settFifth(temps[j]);
-                                            break;
-                                        case 5:
-                                            fInfo.settFifth(temps[j]);
-                                            break;
-                                        case 6:
-                                            fInfo.settSixth(temps[j]);
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                    j++;
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            i++;
-
-                        }
-                    }
-                }).start();
             }
 
         } catch (JSONException e) {

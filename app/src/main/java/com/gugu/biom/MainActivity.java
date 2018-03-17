@@ -1,44 +1,35 @@
 package com.gugu.biom;
 
-import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gugu.biom.Data.DO;
+import com.gugu.biom.Database.DBManager;
 import com.gugu.biom.Fragments.FirstFragment;
 import com.gugu.biom.Fragments.FourthFragment;
 import com.gugu.biom.Fragments.SecondFragment;
 import com.gugu.biom.Fragments.ThirdFragment;
-import com.gugu.biom.Network.CenterAsyncTask;
-import com.gugu.biom.Network.DO;
+import com.gugu.biom.LikeListView.ListAdapter;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,229 +37,217 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_left, tv_right; //지역메뉴 id 값
     LinearLayout ll1, ll2; //상단 레이아웃, 하단 레이아웃
     LinearLayout ll_image; // 상단 레이아웃 내부 왼쪽
+    LinearLayout lll_1, lll_2, lll_3, lll_4; // 물방울 쪽 배경 레이아웃
     ImageView ivCurrent; //현재 날씨 이미지
     TextView tv_temp, tv_difference, tv_rainfall, tv_finedust, tv_o3;
-    LocationManager lm;
-    Geocoder geocoder;
-    static String[] nowPoss;
     DO data;
-    boolean isOnlyOne = true;
-    CenterAsyncTask task = null;
-    int[] xy;
+    DBManager manager = null;
+
+
+    ImageView iv_1, iv_2, iv_3, iv_4;
+
+    ImageButton ibtnDrawerOpen;
+    DrawerLayout drawerLayout;
+    private ListView lvSetting = null;
+    ListAdapter adapter;
+
+    static int vpSetting = 3; //위치설정에 따른 갯수값
+
+    static boolean isOnlyOne = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         data = new DO();
+        manager = new DBManager(this);
+        manager.dbOpen();
+
         vp = (ViewPager) findViewById(R.id.vp);
-        tv_left = (TextView) findViewById(R.id.tv_left);
-        tv_right = (TextView) findViewById(R.id.tv_right);
+
+
+        iv_1 = (ImageView) findViewById(R.id.iv_1);
+        iv_2 = (ImageView) findViewById(R.id.iv_2);
+        iv_3 = (ImageView) findViewById(R.id.iv_3);
+        iv_4 = (ImageView) findViewById(R.id.iv_4);
+
         ll1 = (LinearLayout) findViewById(R.id.ll1);
         ll2 = (LinearLayout) findViewById(R.id.ll2);
         ll_image = (LinearLayout) findViewById(R.id.ll_image);
+        lll_1 = (LinearLayout) findViewById(R.id.lll_1);
+        lll_2 = (LinearLayout) findViewById(R.id.lll_2);
+        lll_3 = (LinearLayout) findViewById(R.id.lll_3);
+        lll_4 = (LinearLayout) findViewById(R.id.lll_4);
+
         ivCurrent = (ImageView) findViewById(R.id.ivCurrent);
         tv_temp = (TextView) findViewById(R.id.tv_temp);
         tv_difference = (TextView) findViewById(R.id.tv_difference);
         tv_rainfall = (TextView) findViewById(R.id.tv_rainfall);
         tv_finedust = (TextView) findViewById(R.id.tv_finedust);
         tv_o3 = (TextView) findViewById(R.id.tv_o3);
-        geocoder = new Geocoder(this);
 
-        ll1.setEnabled(false);
+        Bundle dbData = manager.selectDB("nowTemp");
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+        if(dbData == null) {
+            Log.i("t98t98t98", "처음이야");
+            Intent i = new Intent(this, UpdateService.class);
+            startService(i);
+        }
+        else {
+            Log.i("t98t98t98", "이미있음");
+            double a = Double.parseDouble(dbData.getString("nowTemp"));
 
+            if (a < 0.0) {
+                tv_temp.setText("-" + Math.round(a));
             } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                tv_temp.setText("" + Math.round(a));
             }
-        }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ll1.setEnabled(true);
-            }
-        }, 2000);
 
-        //LocationManager 객체를 얻어온다
-        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            //*--------------------------
+            AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        //GPS 제공자의 정보가 바뀌면 콜백하도록 리스너 등록하기
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 100, 1, mLocationListener);
-        //(등록할 위치 제공자, 통지사이의 최소 시간 간격(millisecond),통지사이의 최소 변경 거리(m),    );
-        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 100, 1, mLocationListener);
+            Intent i = new Intent(this, UpdateService.class);
+            PendingIntent p = PendingIntent.getService(MainActivity.this, 0, i, 0); //서비스로 알람
 
-        vp.setAdapter(new pagerAdapter(getSupportFragmentManager()));
-        vp.setCurrentItem(0);
 
-        ll1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), WeatherCenterActivity.class);
-                i.putExtra("temp", tv_temp.getText().toString());
-                startActivity(i);
-            }
-        });
+            final Calendar cal = Calendar.getInstance();
+            int mHour = cal.get(Calendar.HOUR_OF_DAY);
+            int mMinute = cal.get(Calendar.MINUTE);
+            int mSecond = cal.get(Calendar.SECOND);
 
-        ll2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), SnsActivity.class);
-                startActivity(i);
-            }
-        });
+            Toast.makeText(this, "현재 시간" + mHour + ":" + mMinute + ":" + mSecond, Toast.LENGTH_SHORT).show();
 
-        final Date date = new Date();
-        final SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+            Log.i("t3t3", "" + cal.getTimeInMillis());
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                int[] base_time = {2, 5, 8, 11, 14, 17, 20, 23};
-                SimpleDateFormat format2 = new SimpleDateFormat("H");
-                int nowTime = Integer.parseInt(format2.format(date));
+            alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60, p);
 
-                int index = 0;
+            vp.setAdapter(new pagerAdapter(getSupportFragmentManager()));
+            vp.setCurrentItem(0);
 
-                while(true) {
-                    if(nowTime==0 || nowTime==1) {
-
-                        //날짜도 어제날짜로 설정해줘야함
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-
-                        Calendar calendar = Calendar.getInstance();
-
-                        calendar.add(Calendar.DATE, -1);  // 오늘 날짜에서 하루를 뺌.
-
-                        String date = sdf.format(calendar.getTime());
-
-                        data.setBase_time(String.format("%02d", 23)+"00");
-                        data.setBase_date(date);
-
-                        Log.i("t1t1", date);
-                        break;
-                    }
-                    if(nowTime <= base_time[index]) {
-                        Log.i("ttttt", String.format("%02d", base_time[index-1])+"00");
-
-                        data.setBase_time(String.format("%02d", base_time[index-1])+"00");
-                        data.setBase_date(format.format(date));
-                        break;
-                    }
-                    index++;
+            ll1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(getApplicationContext(), WeatherCenterActivity.class);
+                    i.putExtra("temp", tv_temp.getText().toString());
+                    startActivity(i);
                 }
-            }
-        });
+            });
 
-        data.set_type("json");
+            ll2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent i = new Intent(getApplicationContext(), WebActivity.class);
+                    startActivity(i);
+                }
+            });
 
+            ibtnDrawerOpen = (ImageButton) findViewById(R.id.ibtnDrawer);
+            ibtnDrawerOpen.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+                    lvSetting = (ListView) findViewById(R.id.lvSetting);
+                    lvSetting.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            if (i == 2) {
+                                Intent intent = new Intent(getApplicationContext(), AddLocationActivity.class);
+                                startActivity(intent);
+                            }
+
+                        }
+                    });
+
+                    if (!drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                        drawerLayout.openDrawer(Gravity.LEFT);
+                        adapter = new ListAdapter();
+                        adapter.addItem("설정", "멀까이건");
+                        adapter.addItem("알림설정");
+                        adapter.addItem_a("위치추가");
+                        adapter.addItem_aa("정보");
+                        adapter.addItem_aaa("blaaaah");
+                        lvSetting.setAdapter(adapter);
+
+                    }
+                }
+            });
+
+        }
     }
-
-    public void connectCheck() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-
-        if ((networkInfo != null) && networkInfo.isConnected()) {
-            task = new CenterAsyncTask(data, this);
-            task.execute("");
-        } else {
-            Toast.makeText(this, "인터넷연결상태를 확인하세요", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private final LocationListener mLocationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            //여기서 위치값이 갱신되면 이벤트가 발생한다.
-            //값은 Location 형태로 리턴되며 좌표 출력 방법은 다음과 같다.
-
-            Log.d("test", "onLocationChanged, location:" + location);
-            double longitude = location.getLongitude();//경도
-            double latitude = location.getLatitude();//위도
-            double altitude = location.getAltitude();//고도
-            float accuracy = location.getAccuracy();//정확도
-            String provider = location.getProvider();//위치제공자자
-            //GPS 위치제공자에 의한 위치변화, 오차범위가 좁다.
-            //Network 위치제공자에 의한 위치변화
-            //Network 위치는 GPS에 비해 정확도가 많이 떨어진다.
-            Log.d("tttt", "" + longitude);
-            Log.d("tttt", "" + latitude);
-
-            if(isOnlyOne) {
-                xy = Main2Activity.getXY(latitude, longitude);
-                data.setNx(""+xy[0]);
-                data.setNy(""+xy[1]);
-                data.setAction("main");
-                isOnlyOne = false;
-
-                connectCheck();
-            }
-
-            List<Address> list = null;
-            try {
-                double d1 = latitude;
-                double d2 = longitude;
-
-                list = geocoder.getFromLocation(
-                        d1, // 위도
-                        d2, // 경도
-                        10); // 얻어올 값의 개수
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
-            }
-            if (list != null) {
-                nowPoss = list.get(0).getAddressLine(0).substring(5).split(" ");
-                Log.d("tttt1", nowPoss[1]); //금천구
-                Log.d("tttt1", nowPoss[2]); //시흥1동
-            }
-        }
-
-        @Override
-        public void onStatusChanged(String s, int i, Bundle bundle) {//(provider,status,extras)
-            // 변경시
-            Log.d("test", "onStatusChanged, provider:" + s + ", status:" + i + " ,Bundle:" + bundle);
-
-
-        }
-
-        @Override
-        public void onProviderEnabled(String s) {
-            //Enabled
-            Log.d("test", "onProviderEnabled, provider:" + s);
-
-        }
-
-        @Override
-        public void onProviderDisabled(String s) {
-            //Disabled
-            Log.d("test", "onProviderDisabled, provider:" + s);
-
-        }
-    };
 
     private class pagerAdapter extends FragmentStatePagerAdapter {
         @Override
         public void finishUpdate(ViewGroup container) {
             super.finishUpdate(container);
-            if (vp.getCurrentItem() == 0) {
-                tv_left.setText("");
-                tv_right.setText("하남");
+            switch (vpSetting) {
+                case 1:
+                    lll_1.setVisibility(View.VISIBLE);
+                    iv_1.setVisibility(View.VISIBLE);
+                    break;
+                case 2:
+                    lll_1.setVisibility(View.VISIBLE);
+                    lll_2.setVisibility(View.VISIBLE);
+                    if (vp.getCurrentItem() == 0) {
+                        iv_1.setVisibility(View.VISIBLE);
+                        iv_2.setVisibility(View.INVISIBLE);
+                    } else if (vp.getCurrentItem() == 1) {
+                        iv_1.setVisibility(View.INVISIBLE);
+                        iv_2.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                case 3:
+                    lll_1.setVisibility(View.VISIBLE);
+                    lll_2.setVisibility(View.VISIBLE);
+                    lll_3.setVisibility(View.VISIBLE);
+                    if (vp.getCurrentItem() == 0) {
+                        iv_1.setVisibility(View.VISIBLE);
+                        iv_2.setVisibility(View.INVISIBLE);
+                        iv_3.setVisibility(View.INVISIBLE);
+                    } else if (vp.getCurrentItem() == 1) {
+                        iv_1.setVisibility(View.INVISIBLE);
+                        iv_2.setVisibility(View.VISIBLE);
+                        iv_3.setVisibility(View.INVISIBLE);
+                    } else if (vp.getCurrentItem() == 2) {
+                        iv_1.setVisibility(View.INVISIBLE);
+                        iv_2.setVisibility(View.INVISIBLE);
+                        iv_3.setVisibility(View.VISIBLE);
+                    } else if (vp.getCurrentItem() >= 3) {
+                        iv_1.setVisibility(View.INVISIBLE);
+                    }
+                    break;
+                case 4:
+                    lll_1.setVisibility(View.VISIBLE);
+                    lll_2.setVisibility(View.VISIBLE);
+                    lll_3.setVisibility(View.VISIBLE);
+                    lll_4.setVisibility(View.VISIBLE);
+                    if (vp.getCurrentItem() == 0) {
+                        iv_1.setVisibility(View.VISIBLE);
+                        iv_2.setVisibility(View.INVISIBLE);
+                        iv_3.setVisibility(View.INVISIBLE);
+                        iv_4.setVisibility(View.INVISIBLE);
+                    } else if (vp.getCurrentItem() == 1) {
+                        iv_1.setVisibility(View.INVISIBLE);
+                        iv_2.setVisibility(View.VISIBLE);
+                        iv_3.setVisibility(View.INVISIBLE);
+                        iv_4.setVisibility(View.INVISIBLE);
 
-            } else if (vp.getCurrentItem() == 1) {
-                tv_left.setText("정왕");
-                tv_right.setText("금천");
+                    } else if (vp.getCurrentItem() == 2) {
+                        iv_1.setVisibility(View.INVISIBLE);
+                        iv_2.setVisibility(View.INVISIBLE);
+                        iv_3.setVisibility(View.VISIBLE);
+                        iv_4.setVisibility(View.INVISIBLE);
 
-            } else if (vp.getCurrentItem() == 2) {
-                tv_left.setText("하남");
-                tv_right.setText("김포");
-
-            } else if (vp.getCurrentItem() == 3) {
-                tv_left.setText("금천");
-                tv_right.setText("");
+                    } else if (vp.getCurrentItem() == 3) {
+                        iv_1.setVisibility(View.INVISIBLE);
+                        iv_2.setVisibility(View.INVISIBLE);
+                        iv_3.setVisibility(View.INVISIBLE);
+                        iv_4.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -279,19 +258,35 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-
-                    return new FirstFragment();
+            switch (vpSetting) {
                 case 1:
-
-                    return new SecondFragment();
+                    if (position == 0) {
+                        return new FirstFragment();
+                    } else return null;
                 case 2:
-
-                    return new ThirdFragment();
+                    if (position == 0) {
+                        return new FirstFragment();
+                    } else if (position == 1) {
+                        return new SecondFragment();
+                    } else return null;
                 case 3:
-
-                    return new FourthFragment();
+                    if (position == 0) {
+                        return new FirstFragment();
+                    } else if (position == 1) {
+                        return new SecondFragment();
+                    } else if (position == 2) {
+                        return new ThirdFragment();
+                    } else return null;
+                case 4:
+                    if (position == 0) {
+                        return new FirstFragment();
+                    } else if (position == 1) {
+                        return new SecondFragment();
+                    } else if (position == 2) {
+                        return new ThirdFragment();
+                    } else if (position == 3) {
+                        return new FourthFragment();
+                    } else return null;
                 default:
                     return null;
             }
@@ -299,14 +294,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 4;
+            return vpSetting;
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        lm.removeUpdates(mLocationListener);
     }
 }
